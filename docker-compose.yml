@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  mysql-development:
+    image: mysql:8.0.21
+    environment:
+      MYSQL_ROOT_PASSWORD: helloworld
+      MYSQL_DATABASE: blogapi
+    ports:
+      - "3308:3306"
+  redis:
+    image: redis:alpine
+    hostname: redis
+    ports:
+      - "6379:6379"
+

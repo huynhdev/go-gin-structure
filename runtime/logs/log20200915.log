@@ -1,0 +1,11 @@
+[INFO][form.go:13]2020/09/15 10:04:23 [Key: 'TagPrams.State' Error:Field validation for 'State' failed on the 'lte' tag]
+[INFO][form.go:13]2020/09/15 17:28:51 [Key: 'ArticleParams.TagID' Error:Field validation for 'TagID' failed on the 'required' tag]
+[INFO][form.go:13]2020/09/15 17:41:55 [json: cannot unmarshal string into Go struct field ArticleParams.state of type int]
+[INFO][form.go:13]2020/09/15 17:42:02 [json: cannot unmarshal string into Go struct field ArticleParams.state of type int]
+[INFO][form.go:13]2020/09/15 19:40:11 [Key: 'TagPrams.State' Error:Field validation for 'State' failed on the 'lte' tag]
+[INFO][form.go:13]2020/09/15 19:49:12 [Key: 'ArticleParams.TagID' Error:Field validation for 'TagID' failed on the 'required' tag
+Key: 'ArticleParams.Title' Error:Field validation for 'Title' failed on the 'required' tag]
+[INFO][form.go:13]2020/09/15 19:49:24 [Key: 'ArticleParams.Title' Error:Field validation for 'Title' failed on the 'required' tag]
+[INFO][form.go:13]2020/09/15 19:49:25 [Key: 'ArticleParams.Title' Error:Field validation for 'Title' failed on the 'required' tag]
+[INFO][form.go:13]2020/09/15 19:49:29 [Key: 'ArticleParams.Title' Error:Field validation for 'Title' failed on the 'required' tag]
+[INFO][form.go:13]2020/09/15 19:51:34 [Key: 'TagPrams.Name' Error:Field validation for 'Name' failed on the 'required' tag]
