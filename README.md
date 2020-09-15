@@ -4,6 +4,7 @@
 ### Ready
 
 $ docker-compose up -d
+$ make createdb
 
 ### Run
 
