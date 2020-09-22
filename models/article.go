@@ -3,8 +3,8 @@ package models
 type Article struct {
 	Model
 
-	TagID int `json:"tag_id" sql:"index"`
-
+	TagID         int `json:"tag_id"`
+	Tag           Tag
 	Title         string `json:"title"`
 	Desc          string `json:"desc"`
 	Content       string `json:"content"`
@@ -18,15 +18,7 @@ func GetArticles(pageNum int, pageSize int) ([]Article, error) {
 		err      error
 	)
 
-	tx := db.Begin()
-	tx.Limit(pageSize)
-	if pageNum >= 0 {
-		tx.Offset(pageNum)
-	} else {
-		tx.Offset(0)
-	}
-	tx.Find(&articles)
-	err = tx.Commit().Error
+	err = db.Joins("Tag").Limit(pageSize).Offset(pageNum).Find(&articles).Error
 
 	return articles, err
 }
@@ -37,7 +29,7 @@ func GetArticle(id string) (Article, error) {
 		err     error
 	)
 
-	err = db.First(&article, id).Error
+	err = db.Joins("Tag").First(&article, id).Error
 	return article, err
 }
 
@@ -50,13 +42,13 @@ func AddArticle(data map[string]interface{}) (Article, error) {
 		State:         data["state"].(int),
 		CoverImageUrl: data["cover_image_url"].(string),
 	}
-	err := db.Model(&Article{}).Create(&article).Error
+	err := db.Create(&article).Joins("Tag").Find(&article).Error
 	return article, err
 }
 
 func EditArticle(id string, data map[string]interface{}) (Article, error) {
 	var article Article
-	err := db.First(&article, id).Updates(data).Error
+	err := db.Joins("Tag").First(&article, id).Updates(data).Error
 	return article, err
 }
 

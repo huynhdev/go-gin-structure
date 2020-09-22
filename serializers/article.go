@@ -16,24 +16,27 @@ type ArticlesSerializer struct {
 }
 
 type ArticleResponse struct {
-	ID        uint   `json:"id"`
-	Title     string `json:"title"`
-	Desc      string `json:"desc"`
-	State     int    `json:"state"`
-	TagID     int    `json:"tag_id"`
-	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at"`
+	ID            uint        `json:"id"`
+	Title         string      `json:"title"`
+	Desc          string      `json:"desc"`
+	State         int         `json:"state"`
+	CreatedAt     string      `json:"created_at"`
+	UpdatedAt     string      `json:"updated_at"`
+	Tag           TagResponse `json:"tag"`
+	CoverImageUrl string      `json:"cover_image_url"`
 }
 
 func (s *ArticleSerializer) Response() ArticleResponse {
+	tagSerializer := TagSerializer{s.C, s.Tag}
 	response := ArticleResponse{
-		ID:        s.ID,
-		CreatedAt: s.CreatedAt.UTC().Format("2006-01-02T15:04:05.999Z"),
-		UpdatedAt: s.UpdatedAt.UTC().Format("2006-01-02T15:04:05.999Z"),
-		Title:     s.Title,
-		Desc:      s.Desc,
-		State:     s.State,
-		TagID:     s.TagID,
+		ID:            s.ID,
+		CreatedAt:     s.CreatedAt.UTC().Format("2006-01-02T15:04:05.999Z"),
+		UpdatedAt:     s.UpdatedAt.UTC().Format("2006-01-02T15:04:05.999Z"),
+		Title:         s.Title,
+		Desc:          s.Desc,
+		State:         s.State,
+		CoverImageUrl: s.CoverImageUrl,
+		Tag:           tagSerializer.Response(),
 	}
 	return response
 }

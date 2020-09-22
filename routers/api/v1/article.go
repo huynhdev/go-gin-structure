@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -34,6 +35,7 @@ func GetArticle(c *gin.Context) {
 		appG.Response(http.StatusOK, e.RECORD_NOT_FOUND, nil)
 		return
 	}
+	fmt.Println(article.Tag.Name)
 
 	serializer := serializers.ArticleSerializer{c, article}
 	appG.Response(http.StatusOK, e.SUCCESS, serializer.Response())
